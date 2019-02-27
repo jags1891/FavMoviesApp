@@ -7,13 +7,14 @@
 //
 
 import UIKit
+import SystemConfiguration
 
 class SearchViewController: UIViewController ,UITableViewDelegate, UITableViewDataSource  {
 
     @IBOutlet var tableView: UITableView!
     @IBOutlet var searchTxt:UITextField!
     var searchResults :[Movie]=[]
-    var apiKey:String = "d60dea9f"
+    var apiKey:String = Config.apiKey
     weak var delegate:ViewController!
     
     @IBAction func search(sender: UIButton){
@@ -28,6 +29,8 @@ class SearchViewController: UIViewController ,UITableViewDelegate, UITableViewDa
         print("The item #\(sender.tag) was selected")
         self.delegate.favMovies.append(searchResults[sender.tag])
     }
+    
+    
     
     func retrieveMoviesByTerm(searchTerm:String){
         let url="https://www.omdbapi.com/?apikey=\(apiKey)&s=\(searchTerm)&type=movie&r=json"
