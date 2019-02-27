@@ -1,0 +1,12 @@
+//
+//  ProdConfig.xcconfig
+//  FavMovies
+//
+//  Created by Jagadeesh Bandlamudi on 2/26/19.
+//  Copyright © 2019 Jagadeesh Bandlamudi. All rights reserved.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+API_KEY=XYZ
