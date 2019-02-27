@@ -524,7 +524,7 @@
 				0E6EBE7B222621E7006DDC84 /* Prod */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Development;
 		};
 		0E6EBE672224D108006DDC84 /* Build configuration list for PBXNativeTarget "FavMovies" */ = {
 			isa = XCConfigurationList;
@@ -535,7 +535,7 @@
 				0E6EBE7C222621E7006DDC84 /* Prod */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Development;
 		};
 /* End XCConfigurationList section */
 	};

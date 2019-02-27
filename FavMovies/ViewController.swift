@@ -17,10 +17,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         if segue.identifier=="searchMoviesSegue"{
             let controller = segue.destination as! SearchViewController
             controller.delegate = self;
+            
         }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print("FavMovie.Count=\(favMovies.count)")
         return favMovies.count
     }
     

@@ -9,7 +9,7 @@
 import UIKit
 import SystemConfiguration
 
-class SearchViewController: UIViewController ,UITableViewDelegate, UITableViewDataSource  {
+class SearchViewController: UIViewController ,UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate  {
 
     @IBOutlet var tableView: UITableView!
     @IBOutlet var searchTxt:UITextField!
@@ -105,8 +105,13 @@ class SearchViewController: UIViewController ,UITableViewDelegate, UITableViewDa
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.searchTxt.delegate=self
+        
         // Do any additional setup after loading the view.
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
     }
     
 
