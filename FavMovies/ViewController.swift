@@ -12,12 +12,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     var favMovies: [Movie] = []
     @IBOutlet var mainTableView: UITableView!
+
+    @IBAction func removeButton(sender:UIButton){
+        favMovies.remove(at: sender.tag)
+        mainTableView.reloadData()
+    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier=="searchMoviesSegue"{
             let controller = segue.destination as! SearchViewController
             controller.delegate = self;
-            
         }
     }
     

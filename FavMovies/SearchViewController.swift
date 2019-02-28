@@ -10,6 +10,8 @@ import UIKit
 import SystemConfiguration
 
 class SearchViewController: UIViewController ,UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate  {
+    
+    var indicator = UIActivityIndicatorView()
 
     @IBOutlet var tableView: UITableView!
     @IBOutlet var searchTxt:UITextField!
@@ -25,12 +27,35 @@ class SearchViewController: UIViewController ,UITableViewDelegate, UITableViewDa
         }
     }
     
-    @IBAction func addFav(sender:UIButton){
-        print("The item #\(sender.tag) was selected")
-        self.delegate.favMovies.append(searchResults[sender.tag])
+    
+    @IBAction func removeFav(sender:UIButton){
+        print("The item #\(sender.tag) is selected to be removed")
+        if  self.delegate.favMovies.count>0{
+            for (index,Movie) in self.delegate.favMovies.enumerated() {
+                if searchResults[sender.tag].id == Movie.id{
+                    self.delegate.favMovies.remove(at:index)
+                    print("The item #\(sender.tag) is removed")
+                }
+            }
+        }
     }
     
-    
+    @IBAction func addFav(sender:UIButton){
+        print("The item #\(sender.tag) was selected")
+        if  self.delegate.favMovies.count>0{
+            for Movie in self.delegate.favMovies {
+                if searchResults[sender.tag].id == Movie.id{
+                    print("The item #\(sender.tag) was already added")
+                }else{
+                    self.delegate.favMovies.append(searchResults[sender.tag])
+                    break
+                }
+            }
+        }
+        else{
+             self.delegate.favMovies.append(searchResults[sender.tag])
+        }
+    }
     
     func retrieveMoviesByTerm(searchTerm:String){
         let url="https://www.omdbapi.com/?apikey=\(apiKey)&s=\(searchTerm)&type=movie&r=json"
@@ -80,8 +105,8 @@ class SearchViewController: UIViewController ,UITableViewDelegate, UITableViewDa
         movieCell.movieTitle?.text=searchResults[idx].title
         movieCell.movieYear?.text=searchResults[idx].year
         displayMovieImage(index:idx, movieCell:movieCell)
-        return movieCell
         
+        return movieCell
     }
     
     func displayMovieImage(index:Int, movieCell: CustomTableViewCell) {
@@ -94,7 +119,6 @@ class SearchViewController: UIViewController ,UITableViewDelegate, UITableViewDa
                 print (error!)
                 return
             }
-            
             DispatchQueue.main.async(execute: {
                 let image = UIImage(data: data!)
                 movieCell.movieImageView?.image = image
@@ -102,11 +126,10 @@ class SearchViewController: UIViewController ,UITableViewDelegate, UITableViewDa
             
         }).resume()
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.searchTxt.delegate=self
-        
         // Do any additional setup after loading the view.
     }
     
